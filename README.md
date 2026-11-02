@@ -22,7 +22,8 @@ SHT30 ──I2C──> ESP32-S3 ──Wi-Fi(2.4G)──> MQTT broker ──> Pyt
 ## 目录
 
 ```
-firmware/sht30_mqtt/   设备固件（Arduino-ESP32 core 3.3.12）
+firmware/sht30_mqtt/   设备固件：MQTT 上报版（seq 序号，弱网测试对象）
+firmware/sht30_oled/   温湿度计原型：SHT30+OLED 共享 I2C 总线，含异常路径
 tools/                 mqtt_logger.py（带时间戳日志器）/ mqtt_validator.py（五层断言校验端）
 docs/                  测试报告 / 实操手册 / 接线图
 data/                  自动化校验原始结果
