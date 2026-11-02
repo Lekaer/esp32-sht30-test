@@ -57,7 +57,7 @@ void loop() {
 
   seq++;
   char payload[64];
-  snprintf(payload, sizeof(payload), "{\"seq\":%u,\"temp\":%.1f,\"humi\":%.1f}", seq, temp, humi);
+  snprintf(payload, sizeof(payload), "{\"seq\":%u,\"temp\":%.1f,\"humi\":%.1f,\"heap\":%u}", seq, temp, humi, ESP.getFreeHeap());
   client.publish(TOPIC, payload);          // QoS0：至多一次，断网无补偿（见测试报告）
   Serial.println(payload);
   delay(2000);
