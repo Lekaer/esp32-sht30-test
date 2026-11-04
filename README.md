@@ -24,10 +24,14 @@ SHT30 ──I2C──> ESP32-S3 ──Wi-Fi(2.4G)──> MQTT broker ──> Pyt
 ```
 firmware/sht30_mqtt/   设备固件：MQTT 上报版（seq 序号，弱网测试对象）
 firmware/sht30_oled/   温湿度计原型：SHT30+OLED 共享 I2C 总线，含异常路径
+firmware/sht30_full/   固件 v2.0：OLED+MQTT 同跑（长测固件，payload 带 seq+heap）
 tools/                 mqtt_logger.py（带时间戳日志器）/ mqtt_validator.py（五层断言校验端）
-docs/                  测试报告 / 实操手册 / 接线图
-data/                  自动化校验原始结果
+                       longrun_monitor.py（长测监视端）/ longrun_analysis.py（长测统计分析）
+docs/                  测试报告（含 50h 长测专项）/ 实操手册 / 接线图
+data/                  自动化校验原始结果 / longrun/（50h 长测原始数据 69075 条+分析）
 ```
+
+**50 小时稳定性长测（2026-11-02 → 11-04）**：无重启 / 无内存泄漏（heap 波动 <4%）/ 重复乱序 0；52 次缺口全部归因——分钟级缺口源于观测环境（Mac 合盖睡眠连带本地 broker 停机），期间设备自动进入重连循环、恢复后零干预续传，非设备缺陷。
 
 ## 复现要点
 
